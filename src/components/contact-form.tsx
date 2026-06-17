@@ -37,7 +37,7 @@ export function ContactForm() {
       <Field
         label="Project Location"
         name="location"
-        placeholder="Houston, San Antonio, DFW, Chicago, or outside-network project location"
+        placeholder="Houston, San Antonio, Chicago, or outside-network project location"
       />
       <label className="grid gap-2 text-sm font-semibold text-slate-200">
         Project Description

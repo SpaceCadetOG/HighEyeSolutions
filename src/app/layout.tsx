@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | High Eye Solutions",
   },
   description:
-    "Professional aerial imaging, inspection support, construction documentation, and drone services for Houston, San Antonio, Dallas-Fort Worth, and Chicago.",
+    "Professional aerial imaging, inspection support, construction documentation, and drone services for Houston, San Antonio, and Chicago.",
 };
 
 export default function RootLayout({

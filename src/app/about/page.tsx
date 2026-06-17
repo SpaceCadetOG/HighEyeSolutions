@@ -32,7 +32,7 @@ export default function AboutPage() {
             <div className="flex h-full flex-col justify-between">
               <div>
                 <p className="text-sm font-bold uppercase tracking-[0.22em] text-signal">
-                  Houston, San Antonio, DFW & Chicago
+                  Houston, San Antonio & Chicago
                 </p>
                 <h2 className="mt-4 text-3xl font-black text-white">
                   Professional aerial support, built one mission at a time.
@@ -67,7 +67,7 @@ export default function AboutPage() {
         <div className="grid gap-6 lg:grid-cols-3">
           <InfoBlock
             title="Year 1 Startup Focus"
-            copy="The company is focused on building a professional portfolio, serving clients in Houston, San Antonio, Dallas-Fort Worth, and Chicago, gaining paid experience, learning profitable niches, and working through legitimate contractor channels."
+            copy="The company is focused on building a professional portfolio, serving clients in Houston, San Antonio, and Chicago, gaining paid experience, learning profitable niches, and working through legitimate contractor channels."
           />
           <InfoBlock
             title="FAA Part 107 Compliance"

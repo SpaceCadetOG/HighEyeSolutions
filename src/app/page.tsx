@@ -17,7 +17,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <p className="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-signal">
-              Drone Services for Houston, San Antonio, DFW & Chicago
+              Drone Services for Houston, San Antonio & Chicago
             </p>
             <h1 className="text-balance text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
               Aerial Support. Professional Results.
@@ -26,8 +26,7 @@ export default function HomePage() {
               High Eye Solutions provides drone imaging, inspection support,
               construction documentation, and aerial media services for
               property owners, contractors, real estate professionals, and local
-              businesses in Houston, San Antonio, Dallas-Fort Worth, and
-              Chicago.
+              businesses in Houston, San Antonio, and Chicago.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -54,8 +53,6 @@ export default function HomePage() {
                   Houston, TX
                   <br />
                   San Antonio, TX
-                  <br />
-                  Dallas-Fort Worth, TX
                   <br />
                   Chicago, IL
                 </span>
