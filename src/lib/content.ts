@@ -37,14 +37,6 @@ export const navItems = [
   { label: "Contact", href: "/contact" },
 ];
 
-export const trustItems = [
-  "Houston, San Antonio & Chicago",
-  "FAA Part 107 Focused",
-  "Safety-First Operations",
-  "Real Estate, Roofing & Construction",
-  "Fast Turnaround",
-];
-
 export const differentiators = [
   {
     title: "Safety-First Operations",
