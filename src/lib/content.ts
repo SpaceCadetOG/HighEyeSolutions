@@ -22,7 +22,8 @@ import {
 export const company = {
   name: "High Eye Solutions",
   location: "Houston, Texas",
-  serviceAreas: "Houston, TX; San Antonio, TX; and Chicago, IL",
+  serviceAreas:
+    "Houston, TX; San Antonio, TX; Dallas-Fort Worth, TX; and Chicago, IL",
   founder: "Victor Ogbebor",
   email: "hello@higheyesolutions.com",
   phone: "(832) 555-0198",
@@ -65,7 +66,7 @@ export const differentiators = [
   {
     title: "Multi-Market Service",
     description:
-      "Support for property owners, contractors, real estate teams, and small businesses in Houston, San Antonio, and Chicago.",
+      "Support for property owners, contractors, real estate teams, and small businesses in Houston, San Antonio, Dallas-Fort Worth, and Chicago.",
     icon: Building2,
   },
   {
@@ -342,7 +343,7 @@ export const faqs = [
   {
     question: "What areas do you serve?",
     answer:
-      "The company serves Houston, TX; San Antonio, TX; and Chicago, IL when the project scope, scheduling, airspace, and site conditions support safe operations.",
+      "The company serves Houston, TX; San Antonio, TX; Dallas-Fort Worth, TX; and Chicago, IL when the project scope, scheduling, airspace, and site conditions support safe operations. If your project is outside this network, reach out and High Eye Solutions can review whether support is practical.",
   },
   {
     question: "What services do you currently offer?",

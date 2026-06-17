@@ -11,7 +11,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="Commercial drone services for clear documentation and usable media."
-        description="High Eye Solutions supports clients in Houston, San Antonio, and Chicago with practical aerial imaging, inspection support, construction progress visuals, and marketing content."
+        description="High Eye Solutions supports clients in Houston, San Antonio, Dallas-Fort Worth, and Chicago with practical aerial imaging, inspection support, construction progress visuals, and marketing content."
       />
 
       <Section

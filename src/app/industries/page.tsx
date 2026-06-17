@@ -11,7 +11,7 @@ export default function IndustriesPage() {
       <PageHero
         eyebrow="Industries"
         title="Drone support for the clients High Eye Solutions can serve today."
-        description="The company is focused on practical aerial services for property, contractor, real estate, and business clients in Houston, San Antonio, and Chicago while building toward larger commercial and industrial markets."
+        description="The company is focused on practical aerial services for property, contractor, real estate, and business clients in Houston, San Antonio, Dallas-Fort Worth, and Chicago while building toward larger commercial and industrial markets."
       />
 
       <Section

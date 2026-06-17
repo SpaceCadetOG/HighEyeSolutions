@@ -116,7 +116,8 @@ export function CtaBand() {
           <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-700">
             Request a quote for aerial imaging, roof documentation,
             construction monitoring, or general drone support in Houston, San
-            Antonio, or Chicago.
+            Antonio, Dallas-Fort Worth, or Chicago. Outside this network?
+            Reach out and we can review the project.
           </p>
         </div>
         <Link
