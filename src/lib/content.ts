@@ -495,17 +495,6 @@ export const integrationWorkflow = [
   },
 ];
 
-export const beesIntegrationCapabilities = [
-  "Create inspection projects from High Eye mission data",
-  "Retrieve project details and current status",
-  "Search and reconcile open inspection assignments",
-  "Update supported project details and workflow status",
-  "Retrieve available reports, report summaries, and report files",
-  "Retrieve project images when authorized",
-  "Mark returned reports as client-received after successful import",
-  "Use separate staging and production credentials",
-];
-
 export const industrySolutions = [
   {
     title: "Real Estate",

@@ -2,7 +2,6 @@ import {
   ArrowRight,
   BadgeCheck,
   Check,
-  DatabaseZap,
   ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
@@ -12,7 +11,6 @@ import {
   immediateServices,
   integrationWorkflow,
   pricingPackages,
-  beesIntegrationCapabilities,
   serviceSections,
   serviceWorkflows,
   underwritingServices,
@@ -196,44 +194,60 @@ export default function ServicesPage() {
       </Section>
 
       <Section
-        eyebrow="Vendor Network"
-        title="Bees360 Vendor Integration."
-        description="High Eye Solutions operates as a Bees360 vendor. Direct API and SSO automation are planned integration layers that will allow approved inspection assignments, status updates, reports, and images to move between systems while High Eye preserves its own mission, client, billing, and audit records."
+        eyebrow="Inspection Operations"
+        title="Built to receive, manage, and deliver underwriting assignments."
+        description="High Eye Solutions applies a structured inspection model across direct clients, insurance professionals, contractors, and approved vendor platforms. Every assignment is identified by source while moving through one consistent operational workflow."
         className="bg-white/[0.03]"
       >
-        <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+        <div className="grid gap-6 lg:grid-cols-3">
           <article className="border border-flight/25 bg-flight/5 p-6">
-            <DatabaseZap className="text-flight" size={28} />
-            <h2 className="mt-5 text-2xl font-black text-white">
-              Planned API Architecture
-            </h2>
-            <p className="mt-3 text-sm leading-6 text-slate-300">
-              A secure server-side connector would authenticate with separate
-              staging or production credentials, create or reconcile projects,
-              poll status, retrieve authorized reports and images, store them
-              in the High Eye mission record, and acknowledge successful client
-              receipt.
-            </p>
-            <p className="mt-4 text-xs leading-5 text-slate-500">
-              Credentials would remain in GCP Secret Manager. API calls would
-              run from the backend, never from the browser.
-            </p>
+            <h2 className="text-xl font-black text-white">Assignment Sources</h2>
+            <div className="mt-5">
+              <BulletList
+                items={[
+                  "Direct insurance and property clients",
+                  "Independent adjusters and claim teams",
+                  "Insurance carriers and underwriting teams",
+                  "Approved inspection and contractor platforms",
+                  "Roofing and commercial property partners",
+                ]}
+              />
+            </div>
           </article>
           <article className="border border-white/10 bg-navy/70 p-6">
-            <h2 className="text-xl font-black text-white">
-              Supported Integration Pattern
-            </h2>
+            <h2 className="text-xl font-black text-white">Operational Controls</h2>
             <div className="mt-5">
-              <BulletList items={beesIntegrationCapabilities} />
+              <BulletList
+                items={[
+                  "Source and client labels on every assignment",
+                  "Required scope and shot-list confirmation",
+                  "Scheduling attempts and contact history",
+                  "Mission status and deadline tracking",
+                  "Admin quality review and audit history",
+                ]}
+              />
+            </div>
+          </article>
+          <article className="border border-signal/25 bg-signal/5 p-6">
+            <h2 className="text-xl font-black text-white">Controlled Delivery</h2>
+            <div className="mt-5">
+              <BulletList
+                items={[
+                  "Watermarked client proofs",
+                  "Revision and approval workflow",
+                  "Private original-resolution files",
+                  "Payment-linked release controls",
+                  "Receipts and client-received confirmation",
+                ]}
+              />
             </div>
           </article>
         </div>
-        <div className="mt-6 border border-signal/25 bg-signal/5 p-5 text-sm leading-6 text-slate-300">
-          Vendor status and direct technical integration are separate. Until
-          API credentials and production configuration are activated,
-          assignments can continue through the approved vendor workflow.
-          Enterprise SSO can later use SAML 2.0 for authentication, while user
-          roles remain managed separately in each platform.
+        <div className="mt-6 border border-white/10 bg-navy/70 p-5 text-sm leading-6 text-slate-300">
+          The Admin portal is designed to distinguish direct-client work from
+          vendor-platform assignments so scope, communication, revenue,
+          payables, deliverables, and performance history remain accurate for
+          each source.
         </div>
       </Section>
 

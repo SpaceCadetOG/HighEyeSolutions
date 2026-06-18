@@ -228,12 +228,25 @@ export function PortalDashboard() {
                 <PortalField label="Service needed">
                   <select className="portal-input">
                     <option>Residential roof documentation - $300</option>
+                    <option>Residential underwriting documentation</option>
+                    <option>Commercial underwriting documentation</option>
+                    <option>Managed inspection coordination</option>
                     <option>Insurance adjuster documentation support</option>
                     <option>Real estate media</option>
                     <option>Construction monitoring</option>
                     <option>Insurance documentation</option>
                     <option>Marketing content</option>
                     <option>Custom aerial support</option>
+                  </select>
+                </PortalField>
+                <PortalField label="Assignment source">
+                  <select className="portal-input">
+                    <option>Direct client</option>
+                    <option>Bees360</option>
+                    <option>FlyGuys</option>
+                    <option>Zeitview</option>
+                    <option>Droners.io</option>
+                    <option>Other vendor platform</option>
                   </select>
                 </PortalField>
                 <PortalField label="Project location">
