@@ -245,6 +245,7 @@ export function PortalDashboard() {
                 <PortalField label="Service needed">
                   <select className="portal-input">
                     <option>Roof documentation</option>
+                    <option>Insurance adjuster documentation support</option>
                     <option>Real estate media</option>
                     <option>Construction monitoring</option>
                     <option>Insurance documentation</option>

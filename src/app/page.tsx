@@ -71,7 +71,7 @@ export default function HomePage() {
               </div>
               <div className="grid grid-cols-3 gap-3 text-center text-xs">
                 <Metric label="Aircraft" value="DJI Air 3S" />
-                <Metric label="Focus" value="Part 107" />
+                <Metric label="Certified" value="Part 107" />
                 <Metric label="Mode" value="Safety First" />
               </div>
             </div>

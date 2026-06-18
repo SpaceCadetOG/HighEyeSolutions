@@ -23,6 +23,8 @@ export const company = {
   name: "High Eye Solutions",
   location: "Houston, Texas",
   serviceAreas: "Houston, TX; San Antonio, TX; and Chicago, IL",
+  operatingStatus:
+    "FAA Part 107 certified and currently accepting commercial drone missions",
   founder: "Victor Ogbebor",
   email: "hello@higheyesolutions.com",
   phone: "(832) 555-0198",
@@ -216,6 +218,158 @@ export const serviceSections = [
   },
 ];
 
+export const immediateServices = [
+  {
+    title: "Real Estate Aerial Media",
+    audience:
+      "Real estate agents, brokers, property owners, builders, and property managers",
+    description:
+      "Aerial media designed to show the complete property story: lot layout, exterior condition, surrounding features, neighborhood context, and the relationship between structures and land.",
+    deliverables: [
+      "Edited aerial listing photographs",
+      "Short aerial video or property flyover",
+      "Vertical social media clips when requested",
+      "Lot, exterior, access, and amenity views",
+      "Secure digital delivery link",
+    ],
+  },
+  {
+    title: "Roof & Insurance Documentation",
+    audience:
+      "Roofing contractors, property owners, insurance adjusters, claim teams, and maintenance professionals",
+    description:
+      "Access-conscious roof and property imagery that helps document visible conditions, storm-related concerns, repairs, and before-and-after records without presenting the drone operator as the claim decision-maker.",
+    deliverables: [
+      "High-resolution roof overview images",
+      "Slope, edge, flashing, penetration, and drainage views where safely visible",
+      "Visible-condition and storm documentation image sets",
+      "Before-and-after contractor records",
+      "Organized, time-stamped digital delivery package",
+    ],
+  },
+  {
+    title: "Construction & Commercial Documentation",
+    audience:
+      "Contractors, owners, project managers, commercial property teams, and stakeholders",
+    description:
+      "Repeatable site imagery for project updates, exterior documentation, remote stakeholder visibility, and visual progress records.",
+    deliverables: [
+      "Site overview and perimeter imagery",
+      "Repeatable progress viewpoints",
+      "Milestone or monthly photo sets",
+      "Stakeholder-ready digital folders",
+      "Optional short progress video",
+    ],
+  },
+];
+
+export const pricingPackages = [
+  {
+    service: "Real Estate",
+    package: "Essential",
+    price: "$150-$300",
+    description:
+      "A focused residential aerial photo set covering the property, lot, exterior, and immediate context.",
+    includes: ["Edited aerial photos", "One property", "Digital delivery"],
+  },
+  {
+    service: "Real Estate",
+    package: "Media Plus",
+    price: "$300-$500",
+    description:
+      "Expanded listing coverage with aerial photography plus short-form motion content.",
+    includes: [
+      "Expanded photo set",
+      "Short aerial video",
+      "Social-ready selections",
+    ],
+  },
+  {
+    service: "Real Estate",
+    package: "Full Property Story",
+    price: "$1,000+",
+    description:
+      "Custom production for larger, luxury, acreage, development, or multi-location property assignments.",
+    includes: [
+      "Custom shot plan",
+      "Photo and video package",
+      "Advanced editing and multiple deliverable formats",
+    ],
+  },
+  {
+    service: "Roof Documentation",
+    package: "Residential",
+    price: "$200-$300",
+    description:
+      "Focused aerial documentation of a residential roof and safely visible exterior conditions.",
+    includes: [
+      "Roof overview",
+      "Detailed visual angles",
+      "Organized image package",
+    ],
+  },
+  {
+    service: "Roof Documentation",
+    package: "Commercial",
+    price: "$500-$1,000+",
+    description:
+      "Custom documentation for larger roofs, multiple structures, complex sites, or expanded reporting needs.",
+    includes: [
+      "Pre-flight scope review",
+      "Expanded coverage",
+      "Contractor or adjuster-ready file organization",
+    ],
+  },
+  {
+    service: "Construction",
+    package: "Progress Mission",
+    price: "Custom quote",
+    description:
+      "Single-visit or recurring site documentation priced around site size, frequency, access, and deliverables.",
+    includes: [
+      "Site overview",
+      "Progress viewpoints",
+      "Optional recurring schedule",
+    ],
+  },
+];
+
+export const serviceWorkflows = [
+  {
+    service: "Real Estate Media",
+    steps: [
+      "Submit the address, listing timeline, property details, and requested media.",
+      "High Eye reviews airspace, weather, property access, shot priorities, and scope.",
+      "The client approves the quote and funds the agreed payment milestone.",
+      "The mission is scheduled, flown, and captured under the approved plan.",
+      "Media is edited and quality checked for consistent, usable presentation.",
+      "Final files are delivered through a secure link; funds release at the agreed milestone.",
+    ],
+  },
+  {
+    service: "Roof & Insurance Documentation",
+    steps: [
+      "Submit the property location, claim or contractor context, urgency, and requested roof views.",
+      "High Eye confirms lawful access, airspace, weather, safety boundaries, and documentation scope.",
+      "The client approves pricing and funds the agreed payment milestone.",
+      "The aircraft captures efficient perimeter, roof-plane, and visible-condition imagery without making coverage or damage determinations.",
+      "Files are reviewed, organized, labeled, and prepared for the contractor, adjuster, owner, or claim team.",
+      "The digital package is delivered; payment releases according to the approved project terms.",
+    ],
+  },
+  {
+    service: "Construction & Commercial",
+    steps: [
+      "Submit the site, project phase, stakeholders, target viewpoints, and reporting frequency.",
+      "High Eye reviews site permissions, operational hazards, airspace, scheduling, and repeatable flight positions.",
+      "The client approves the quote, deliverables, and payment schedule.",
+      "The mission is flown once or on an agreed recurring cadence.",
+      "Photos and video are organized by date, phase, location, or milestone.",
+      "Deliverables are posted to the client workspace and the corresponding milestone is released.",
+    ],
+  },
+];
+
 export const growthServiceSections = [
   {
     title: "Mapping & Photogrammetry",
@@ -341,7 +495,7 @@ export const faqs = [
   {
     question: "Are you FAA Part 107 certified?",
     answer:
-      "High Eye Solutions is built around FAA Part 107 compliance. The current site language is written so it can be updated from certification in progress to FAA Part 107 certified as soon as that status is finalized.",
+      "Yes. High Eye Solutions is FAA Part 107 certified and currently accepts commercial drone missions when airspace, weather, property access, permissions, and site conditions support a lawful and safe operation.",
   },
   {
     question: "What areas do you serve?",
@@ -366,7 +520,7 @@ export const faqs = [
   {
     question: "Can you support insurance documentation?",
     answer:
-      "Yes. Drone imagery can support claim conversations, contractor records, storm documentation, and before-and-after files. It does not replace licensed adjuster decisions or engineering reports.",
+      "Yes. Drone imagery can support licensed adjusters, claim teams, roofing contractors, and property owners with visible-condition records, storm documentation, and before-and-after files. High Eye Solutions provides aerial documentation, not coverage decisions, damage causation opinions, engineering reports, or public-adjusting services.",
   },
   {
     question: "Do you offer construction progress monitoring?",
@@ -381,7 +535,7 @@ export const faqs = [
   {
     question: "How are deliverables provided?",
     answer:
-      "Initial deliverables can be provided through organized digital folders or secure links. Future phases may include client portals, downloads, and project dashboards.",
+      "Deliverables are provided through organized digital folders, secure links, or the client portal workflow. Packages may include edited photos, video clips, web galleries, and documentation files based on the approved scope.",
   },
   {
     question: "How quickly can projects be scheduled?",
@@ -392,6 +546,11 @@ export const faqs = [
     question: "Do you carry insurance?",
     answer:
       "Insurance language can be updated as policies are finalized. Commercial projects may require coverage details before flight operations are confirmed.",
+  },
+  {
+    question: "How much does a drone mission cost?",
+    answer:
+      "Indicative pricing begins around $150-$300 for essential real estate aerial media and $200-$300 for residential roof documentation. Expanded real estate packages are commonly $300-$500, while full property productions and commercial roof projects may begin around $500-$1,000 or more. Every price is confirmed after airspace, location, access, site size, travel, editing, and deliverables are reviewed.",
   },
   {
     question: "Can you support commercial or contractor projects?",

@@ -11,7 +11,7 @@ export default function FaqPage() {
       <PageHero
         eyebrow="FAQ"
         title="Straight answers for planning drone work."
-        description="These answers are written for a startup-stage drone services company and can be updated as certifications, insurance, aircraft, and service systems mature."
+        description="Current answers covering certification, services, pricing, scheduling, deliverables, and operating boundaries."
       />
 
       <Section eyebrow="Common Questions" title="Before you request a quote.">

@@ -71,7 +71,7 @@ export default function AboutPage() {
           />
           <InfoBlock
             title="FAA Part 107 Compliance"
-            copy="Operations and messaging are structured around FAA Part 107 requirements. The compliance language can be updated from certification in progress to FAA Part 107 certified when applicable."
+            copy="High Eye Solutions is FAA Part 107 certified and currently accepts commercial drone missions when airspace, access, weather, permissions, and site conditions support safe and lawful operations."
           />
           <InfoBlock
             title="Safety Commitment"
