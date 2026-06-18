@@ -22,7 +22,8 @@ import {
 export const company = {
   name: "High Eye Solutions",
   location: "Houston, Texas",
-  serviceAreas: "Houston, TX; San Antonio, TX; and Chicago, IL",
+  serviceAreas:
+    "Houston, San Antonio, Dallas-Fort Worth, Austin, New Orleans, and Chicago",
   operatingStatus:
     "FAA Part 107 certified and currently accepting commercial drone missions",
   founder: "Victor Ogbebor",
@@ -67,7 +68,7 @@ export const differentiators = [
   {
     title: "Multi-Market Service",
     description:
-      "Support for property owners, contractors, real estate teams, and small businesses in Houston, San Antonio, and Chicago.",
+      "Houston-based support across key Texas, Louisiana, and Illinois markets, subject to scheduling and mission review.",
     icon: Building2,
   },
   {
@@ -500,7 +501,7 @@ export const faqs = [
   {
     question: "What areas do you serve?",
     answer:
-      "The company serves Houston, TX; San Antonio, TX; and Chicago, IL when the project scope, scheduling, airspace, and site conditions support safe operations. If your project is outside this network, reach out and High Eye Solutions can review whether support is practical.",
+      "High Eye Solutions is based in Houston and reviews missions in Houston, San Antonio, Dallas-Fort Worth, Austin, New Orleans, and Chicago. Every assignment remains subject to scheduling, travel, airspace, access, credential requirements, and safe operating conditions. Outside this network, reach out for a project review.",
   },
   {
     question: "What services do you currently offer?",

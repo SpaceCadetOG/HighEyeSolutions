@@ -20,7 +20,7 @@ export default function ContactPage() {
       <Section
         eyebrow="Quote Request"
         title="Tell us what needs to be documented, filmed, or supported."
-        description="Request a quote for aerial imaging, roof documentation, construction monitoring, or general drone support in Houston, San Antonio, or Chicago. If the project is outside this network, reach out and we can review it."
+        description="Request a quote for aerial imaging, roof documentation, construction monitoring, or general drone support across our Texas, Louisiana, and Illinois mission network. Projects outside the network are welcome for review."
       >
         <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
           <aside className="grid content-start gap-5">

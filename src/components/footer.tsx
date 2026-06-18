@@ -9,8 +9,8 @@ export function Footer() {
           <p className="text-lg font-bold text-white">{company.name}</p>
           <p className="mt-3 max-w-xl text-sm leading-6 text-slate-400">
             Professional aerial imaging, inspection support, construction
-            documentation, and drone services for Houston, San Antonio, and
-            Chicago clients.
+            documentation, and drone services from a Houston base across
+            priority Texas, Louisiana, and Illinois markets.
           </p>
           <p className="mt-5 text-sm font-semibold text-signal">
             {company.serviceAreas}

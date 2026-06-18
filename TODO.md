@@ -30,3 +30,19 @@
 - Integrate a qualified marketplace payment provider for payment authorization,
   escrow-style milestones, refunds, disputes, and contractor payouts.
 - Complete legal, accounting, privacy, and payment-flow review before enabling transactions.
+
+# Operations Platform
+
+- Replace shared demo records with Firestore mission, client, invoice, receipt,
+  pilot, credential, assignment, deliverable, message, and audit collections.
+- Add administrator authentication and role-based controls.
+- Add expandable mission detail APIs with claim, carrier, access, SLA, scope,
+  deliverable, invoice, payment, payable, and audit data.
+- Add client history and property records.
+- Add invoice and receipt PDF generation for client and admin portals.
+- Add pilot payables, payout statements, and provider transaction references.
+- Add mobile pilot workflow for accept/decline, en route, on site, upload,
+  processing, and completion actions.
+- Add CAT mode, bulk mission intake, priority queues, routing, and SLA timers.
+- Validate state authority, license numbers, expiration dates, COI, aircraft,
+  and pilot credentials before assignment.

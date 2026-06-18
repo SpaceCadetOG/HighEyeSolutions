@@ -19,7 +19,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="Current drone services, practical pricing, and a clear delivery process."
-        description="High Eye Solutions is FAA Part 107 certified and currently supports clients in Houston, San Antonio, and Chicago with real estate media, roof and insurance documentation, construction progress visuals, and custom aerial work."
+        description="High Eye Solutions is FAA Part 107 certified and reviews missions across priority Texas, Louisiana, and Illinois markets for real estate media, roof and insurance documentation, construction progress visuals, and custom aerial work."
       />
 
       <Section

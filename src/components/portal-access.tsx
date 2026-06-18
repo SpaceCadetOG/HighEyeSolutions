@@ -1,7 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Eye, EyeOff, LockKeyhole, UserPlus } from "lucide-react";
+import {
+  ArrowRight,
+  Eye,
+  EyeOff,
+  LockKeyhole,
+  ShieldCheck,
+  UserPlus,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -127,6 +134,12 @@ export function PortalAccess() {
         className="inline-flex min-h-12 w-full items-center justify-center gap-2 border border-flight/40 bg-flight/10 px-5 text-sm font-bold text-white transition hover:bg-flight/20"
       >
         Explore Demo Portal <ArrowRight size={17} />
+      </Link>
+      <Link
+        href="/admin/dashboard"
+        className="mt-3 inline-flex min-h-12 w-full items-center justify-center gap-2 border border-signal/35 bg-signal/5 px-5 text-sm font-bold text-white transition hover:bg-signal/10"
+      >
+        <ShieldCheck size={17} /> Explore Admin Demo
       </Link>
 
       <p className="mt-5 text-center text-xs leading-5 text-slate-500">

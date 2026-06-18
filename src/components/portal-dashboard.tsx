@@ -10,53 +10,40 @@ import {
   CloudDownload,
   FileImage,
   FolderKanban,
+  FileText,
   LayoutDashboard,
   MapPin,
   Menu,
   MessageSquareText,
   PlaneTakeoff,
   Plus,
+  ReceiptText,
   ShieldCheck,
   Upload,
   X,
 } from "lucide-react";
 import { useState } from "react";
+import {
+  demoInvoices,
+  demoMissions,
+  type DemoMission,
+} from "@/lib/portal-data";
 
-type View = "overview" | "missions" | "deliverables" | "payments" | "messages";
+type View =
+  | "overview"
+  | "missions"
+  | "deliverables"
+  | "billing"
+  | "payments"
+  | "messages";
 
 const navigation = [
   { id: "overview" as const, label: "Overview", icon: LayoutDashboard },
   { id: "missions" as const, label: "Missions", icon: PlaneTakeoff },
   { id: "deliverables" as const, label: "Deliverables", icon: CloudDownload },
+  { id: "billing" as const, label: "Invoices & Receipts", icon: ReceiptText },
   { id: "payments" as const, label: "Payments", icon: Banknote },
   { id: "messages" as const, label: "Messages", icon: MessageSquareText },
-];
-
-const missions = [
-  {
-    id: "HES-1042",
-    title: "Commercial Roof Documentation",
-    location: "Houston, TX",
-    date: "Schedule pending",
-    status: "Scope Review",
-    progress: 24,
-  },
-  {
-    id: "HES-1038",
-    title: "Residential Listing Media",
-    location: "San Antonio, TX",
-    date: "June 22, 2026",
-    status: "Scheduled",
-    progress: 45,
-  },
-  {
-    id: "HES-1029",
-    title: "Construction Progress Update",
-    location: "Chicago, IL",
-    date: "Delivered June 14",
-    status: "Delivered",
-    progress: 100,
-  },
 ];
 
 const deliverables = [
@@ -89,6 +76,9 @@ export function PortalDashboard() {
   const [mobileNav, setMobileNav] = useState(false);
   const [requestOpen, setRequestOpen] = useState(false);
   const [requestSent, setRequestSent] = useState(false);
+  const [expandedMission, setExpandedMission] = useState<string | null>(
+    "HES-1042",
+  );
 
   const selectView = (next: View) => {
     setView(next);
@@ -193,10 +183,20 @@ export function PortalDashboard() {
           </div>
 
           {view === "overview" ? (
-            <Overview onNavigate={selectView} />
+            <Overview
+              onNavigate={selectView}
+              expandedMission={expandedMission}
+              onToggleMission={setExpandedMission}
+            />
           ) : null}
-          {view === "missions" ? <MissionList /> : null}
+          {view === "missions" ? (
+            <MissionList
+              expandedMission={expandedMission}
+              onToggleMission={setExpandedMission}
+            />
+          ) : null}
           {view === "deliverables" ? <DeliverableList /> : null}
+          {view === "billing" ? <BillingView /> : null}
           {view === "payments" ? <PaymentView /> : null}
           {view === "messages" ? <MessagesView /> : null}
         </main>
@@ -244,7 +244,7 @@ export function PortalDashboard() {
               <form className="mt-7 grid gap-5 sm:grid-cols-2">
                 <PortalField label="Service needed">
                   <select className="portal-input">
-                    <option>Roof documentation</option>
+                    <option>Residential roof documentation - $300</option>
                     <option>Insurance adjuster documentation support</option>
                     <option>Real estate media</option>
                     <option>Construction monitoring</option>
@@ -255,6 +255,27 @@ export function PortalDashboard() {
                 </PortalField>
                 <PortalField label="Project location">
                   <input className="portal-input" placeholder="Street, city, state" />
+                </PortalField>
+                <PortalField label="Carrier or firm">
+                  <input
+                    className="portal-input"
+                    placeholder="Insurance carrier, IA firm, or company"
+                  />
+                </PortalField>
+                <PortalField label="Claim number">
+                  <input
+                    className="portal-input"
+                    placeholder="Optional claim or assignment number"
+                  />
+                </PortalField>
+                <PortalField label="On-site contact">
+                  <input
+                    className="portal-input"
+                    placeholder="Name and phone number"
+                  />
+                </PortalField>
+                <PortalField label="Deadline / SLA">
+                  <input className="portal-input" type="datetime-local" />
                 </PortalField>
                 <PortalField label="Preferred date">
                   <input className="portal-input" type="date" />
@@ -272,6 +293,12 @@ export function PortalDashboard() {
                   <textarea
                     className="portal-input min-h-28 resize-y py-3"
                     placeholder="Describe the site, goals, access, and required shots or documentation."
+                  />
+                </PortalField>
+                <PortalField label="Access instructions" className="sm:col-span-2">
+                  <textarea
+                    className="portal-input min-h-24 resize-y py-3"
+                    placeholder="Gate codes, lockbox, permission status, hazards, parking, or contact-before-arrival notes."
                   />
                 </PortalField>
                 <PortalField label="Reference files" className="sm:col-span-2">
@@ -315,11 +342,19 @@ function PortalField({
   );
 }
 
-function Overview({ onNavigate }: { onNavigate: (view: View) => void }) {
+function Overview({
+  onNavigate,
+  expandedMission,
+  onToggleMission,
+}: {
+  onNavigate: (view: View) => void;
+  expandedMission: string | null;
+  onToggleMission: (missionId: string | null) => void;
+}) {
   const stats = [
     { label: "Active Missions", value: "2", icon: PlaneTakeoff },
     { label: "Ready Files", value: "3", icon: FileImage },
-    { label: "Demo Escrow", value: "$450", icon: CircleDollarSign },
+    { label: "Protected Funds", value: "$450", icon: CircleDollarSign },
     { label: "Open Messages", value: "2", icon: MessageSquareText },
   ];
 
@@ -352,7 +387,10 @@ function Overview({ onNavigate }: { onNavigate: (view: View) => void }) {
               View all
             </button>
           </div>
-          <MissionRows />
+          <MissionRows
+            expandedMission={expandedMission}
+            onToggleMission={onToggleMission}
+          />
         </section>
 
         <section className="border border-white/10 bg-white/[0.025] p-5">
@@ -389,46 +427,85 @@ function Overview({ onNavigate }: { onNavigate: (view: View) => void }) {
   );
 }
 
-function MissionRows() {
+function MissionRows({
+  expandedMission,
+  onToggleMission,
+}: {
+  expandedMission: string | null;
+  onToggleMission: (missionId: string | null) => void;
+}) {
   return (
     <div className="divide-y divide-white/10">
-      {missions.map((mission) => (
+      {demoMissions.map((mission) => (
         <article
           key={mission.id}
-          className="grid gap-4 p-5 sm:grid-cols-[1fr_auto] sm:items-center"
+          className="bg-white/[0.01]"
         >
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <p className="font-bold">{mission.title}</p>
-              <StatusBadge status={mission.status} />
+          <button
+            type="button"
+            onClick={() =>
+              onToggleMission(expandedMission === mission.id ? null : mission.id)
+            }
+            className="grid w-full gap-4 p-5 text-left transition hover:bg-white/[0.035] sm:grid-cols-[1fr_auto_auto] sm:items-center"
+            aria-expanded={expandedMission === mission.id}
+          >
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="font-bold">{mission.title}</p>
+                <StatusBadge status={mission.status} />
+              </div>
+              <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
+                <span>{mission.id}</span>
+                <span>{mission.client}</span>
+                <span className="flex items-center gap-1">
+                  <MapPin size={13} /> {mission.location}
+                </span>
+                <span>{mission.date}</span>
+              </div>
             </div>
-            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
-              <span>{mission.id}</span>
-              <span className="flex items-center gap-1">
-                <MapPin size={13} /> {mission.location}
-              </span>
-              <span>{mission.date}</span>
+            <div className="text-left sm:text-right">
+              <p className="text-xs text-slate-500">Mission price</p>
+              <p className="mt-1 font-black text-white">
+                ${mission.price.toFixed(2)}
+              </p>
             </div>
-          </div>
-          <div className="w-full sm:w-32">
-            <div className="mb-2 flex justify-between text-xs text-slate-500">
-              <span>Progress</span>
-              <span>{mission.progress}%</span>
-            </div>
-            <div className="h-1.5 bg-white/10">
-              <div
-                className="h-full bg-flight"
-                style={{ width: `${mission.progress}%` }}
+            <div className="flex items-center gap-3">
+              <div className="w-full sm:w-32">
+                <div className="mb-2 flex justify-between text-xs text-slate-500">
+                  <span>Progress</span>
+                  <span>{mission.progress}%</span>
+                </div>
+                <div className="h-1.5 bg-white/10">
+                  <div
+                    className="h-full bg-flight"
+                    style={{ width: `${mission.progress}%` }}
+                  />
+                </div>
+              </div>
+              <ChevronRight
+                className={`flex-none text-slate-500 transition ${
+                  expandedMission === mission.id ? "rotate-90" : ""
+                }`}
+                size={18}
               />
             </div>
-          </div>
+          </button>
+          {expandedMission === mission.id ? (
+            <MissionDetails mission={mission} />
+          ) : null}
         </article>
       ))}
     </div>
   );
 }
 
-function MissionList() {
+function MissionList({
+  expandedMission,
+  onToggleMission,
+}: {
+  expandedMission: string | null;
+  onToggleMission: (missionId: string | null) => void;
+}) {
   return (
     <section className="mt-8 border border-white/10 bg-white/[0.025]">
       <div className="border-b border-white/10 p-5">
@@ -437,8 +514,88 @@ function MissionList() {
           Requested, scheduled, active, and delivered work.
         </p>
       </div>
-      <MissionRows />
+      <MissionRows
+        expandedMission={expandedMission}
+        onToggleMission={onToggleMission}
+      />
     </section>
+  );
+}
+
+function MissionDetails({ mission }: { mission: DemoMission }) {
+  return (
+    <div className="grid gap-6 border-t border-flight/20 bg-flight/[0.045] p-5 lg:grid-cols-2 xl:grid-cols-4">
+      <DetailBlock title="Assignment">
+        <DetailLine label="Service" value={mission.service} />
+        <DetailLine label="Property" value={mission.propertyAddress} />
+        <DetailLine label="Deadline" value={mission.deadline} />
+        <DetailLine label="Pilot" value={mission.assignedPilot} />
+      </DetailBlock>
+      <DetailBlock title="Insurance / Contact">
+        <DetailLine label="Claim" value={mission.claimNumber ?? "Not applicable"} />
+        <DetailLine label="Carrier" value={mission.carrier ?? "Not applicable"} />
+        <DetailLine label="Contact" value={mission.onsiteContact} />
+        <DetailLine label="Access" value={mission.access} />
+      </DetailBlock>
+      <DetailBlock title="Approved Scope">
+        <BulletItems items={mission.scope} />
+      </DetailBlock>
+      <DetailBlock title="Deliverables">
+        <BulletItems items={mission.deliverables} />
+      </DetailBlock>
+      <div className="border-t border-white/10 pt-5 lg:col-span-2 xl:col-span-4">
+        <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-400">
+          Mission Activity
+        </p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          {mission.activity.map((event) => (
+            <div key={event.label} className="border border-white/10 bg-navy/60 p-4">
+              <p className="text-sm font-bold text-white">{event.label}</p>
+              <p className="mt-1 text-xs text-slate-500">{event.time}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DetailBlock({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <p className="text-xs font-black uppercase tracking-[0.18em] text-flight">
+        {title}
+      </p>
+      <div className="mt-4 grid gap-3">{children}</div>
+    </div>
+  );
+}
+
+function DetailLine({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-[11px] font-bold uppercase text-slate-600">{label}</p>
+      <p className="mt-1 text-sm leading-5 text-slate-300">{value}</p>
+    </div>
+  );
+}
+
+function BulletItems({ items }: { items: string[] }) {
+  return (
+    <ul className="grid gap-2">
+      {items.map((item) => (
+        <li key={item} className="flex gap-2 text-sm leading-5 text-slate-300">
+          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-signal" />
+          {item}
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -481,6 +638,77 @@ function DeliverableList() {
   );
 }
 
+function BillingView() {
+  return (
+    <section className="mt-8 border border-white/10 bg-white/[0.025]">
+      <div className="border-b border-white/10 p-5">
+        <h2 className="text-lg font-black">Invoices and receipts</h2>
+        <p className="mt-1 text-sm text-slate-500">
+          Billing documents linked to each mission and payment milestone.
+        </p>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[780px] text-left">
+          <thead className="border-b border-white/10 bg-white/[0.025] text-xs uppercase tracking-[0.12em] text-slate-500">
+            <tr>
+              <th className="px-5 py-4">Invoice</th>
+              <th className="px-5 py-4">Mission</th>
+              <th className="px-5 py-4">Issued</th>
+              <th className="px-5 py-4">Amount</th>
+              <th className="px-5 py-4">Status</th>
+              <th className="px-5 py-4">Documents</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-white/10">
+            {demoInvoices.map((invoice) => (
+              <tr key={invoice.id}>
+                <td className="px-5 py-5 font-bold text-white">{invoice.id}</td>
+                <td className="px-5 py-5 text-sm text-slate-300">
+                  {invoice.missionId}
+                </td>
+                <td className="px-5 py-5 text-sm text-slate-400">
+                  {invoice.issued}
+                </td>
+                <td className="px-5 py-5 font-black text-white">
+                  ${invoice.amount.toFixed(2)}
+                </td>
+                <td className="px-5 py-5">
+                  <span
+                    className={`border px-2 py-1 text-[10px] font-black uppercase ${
+                      invoice.status === "Paid"
+                        ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-300"
+                        : "border-signal/30 bg-signal/10 text-signal"
+                    }`}
+                  >
+                    {invoice.status}
+                  </span>
+                </td>
+                <td className="px-5 py-5">
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      className="inline-flex min-h-9 items-center gap-2 border border-white/15 px-3 text-xs font-bold text-slate-200"
+                    >
+                      <FileText size={15} /> Invoice
+                    </button>
+                    <button
+                      type="button"
+                      disabled={invoice.receipt === "Not available"}
+                      className="inline-flex min-h-9 items-center gap-2 border border-white/15 px-3 text-xs font-bold text-slate-200 disabled:cursor-not-allowed disabled:opacity-35"
+                    >
+                      <ReceiptText size={15} /> Receipt
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
 function PaymentView() {
   return (
     <div className="mt-8 grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
@@ -494,8 +722,8 @@ function PaymentView() {
         <div className="divide-y divide-white/10">
           <PaymentRow
             mission="HES-1042"
-            title="Commercial Roof Documentation"
-            amount="$450.00"
+            title="Residential Roof Documentation"
+            amount="$300.00"
             status="Awaiting Approval"
           />
           <PaymentRow
