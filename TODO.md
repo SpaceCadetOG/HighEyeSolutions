@@ -45,6 +45,21 @@
   URLs only after the configured approval and payment-release event.
 - Log proof views, approvals, revisions, releases, and original downloads.
 - Add deliverable licensing terms and acceptance timestamps to each mission.
+
+# External Inspection Platform Integration
+
+- Confirm and document Bees360 vendor account, staging, and production API access.
+- Store Bees360 client and system-user credentials in GCP Secret Manager.
+- Build a server-side OAuth token and refresh-token service.
+- Map High Eye missions to external project identifiers without duplicating assignments.
+- Add project creation, project search, status polling, report retrieval, image
+  retrieval, and client-received acknowledgment jobs.
+- Add retry, idempotency, rate-limit, timeout, and reconciliation handling.
+- Keep separate staging and production configuration and credentials.
+- Evaluate SAML 2.0 SSO for enterprise accounts while keeping role assignment
+  inside the High Eye authorization system.
+- Complete API access, data processing, security, and branding review before
+  advertising the direct Bees360 connector as live.
 - Add pilot payables, payout statements, and provider transaction references.
 - Add mobile pilot workflow for accept/decline, en route, on site, upload,
   processing, and completion actions.

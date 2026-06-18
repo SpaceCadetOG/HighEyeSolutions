@@ -1,12 +1,21 @@
-import { ArrowRight, BadgeCheck, Check, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Check,
+  DatabaseZap,
+  ShieldCheck,
+} from "lucide-react";
 import Link from "next/link";
 import { CtaBand, BulletList, PageHero, Section } from "@/components/ui";
 import {
   growthServiceSections,
   immediateServices,
+  integrationWorkflow,
   pricingPackages,
+  beesIntegrationCapabilities,
   serviceSections,
   serviceWorkflows,
+  underwritingServices,
 } from "@/lib/content";
 
 export const metadata = {
@@ -123,6 +132,108 @@ export default function ServicesPage() {
               </ol>
             </article>
           ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Underwriting Support"
+        title="Structured property-inspection workflows for insurance teams."
+        description="These service lines adapt established insurance inspection practices to High Eye Solutions' current operating capability. Partner-dependent technology and professional review services are clearly separated from what is available today."
+        className="bg-white/[0.03]"
+      >
+        <div className="grid gap-6 lg:grid-cols-3">
+          {underwritingServices.map((service) => (
+            <article
+              key={service.title}
+              className="border border-white/10 bg-navy/70 p-6"
+            >
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-signal">
+                {service.status}
+              </p>
+              <h2 className="mt-3 text-2xl font-black text-white">
+                {service.title}
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                {service.summary}
+              </p>
+              <p className="mt-6 text-xs font-black uppercase tracking-[0.16em] text-flight">
+                Current Workflow
+              </p>
+              <div className="mt-4">
+                <BulletList items={service.current} />
+              </div>
+              <p className="mt-6 text-xs font-black uppercase tracking-[0.16em] text-slate-500">
+                Expansion Path
+              </p>
+              <div className="mt-4">
+                <BulletList items={service.future} />
+              </div>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Inspection Lifecycle"
+        title="A consistent assignment-to-delivery process."
+        description="The workflow is designed for transparent scheduling, repeatable field capture, documented quality review, controlled file release, and a clear client-received acknowledgment."
+      >
+        <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2 xl:grid-cols-3">
+          {integrationWorkflow.map((step, index) => (
+            <article key={step.title} className="bg-navy p-6">
+              <span className="flex h-9 w-9 items-center justify-center border border-flight/35 bg-flight/10 text-sm font-black text-flight">
+                {index + 1}
+              </span>
+              <h2 className="mt-5 text-lg font-black text-white">
+                {step.title}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                {step.description}
+              </p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Vendor Network"
+        title="Bees360 Vendor Integration."
+        description="High Eye Solutions operates as a Bees360 vendor. Direct API and SSO automation are planned integration layers that will allow approved inspection assignments, status updates, reports, and images to move between systems while High Eye preserves its own mission, client, billing, and audit records."
+        className="bg-white/[0.03]"
+      >
+        <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+          <article className="border border-flight/25 bg-flight/5 p-6">
+            <DatabaseZap className="text-flight" size={28} />
+            <h2 className="mt-5 text-2xl font-black text-white">
+              Planned API Architecture
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-300">
+              A secure server-side connector would authenticate with separate
+              staging or production credentials, create or reconcile projects,
+              poll status, retrieve authorized reports and images, store them
+              in the High Eye mission record, and acknowledge successful client
+              receipt.
+            </p>
+            <p className="mt-4 text-xs leading-5 text-slate-500">
+              Credentials would remain in GCP Secret Manager. API calls would
+              run from the backend, never from the browser.
+            </p>
+          </article>
+          <article className="border border-white/10 bg-navy/70 p-6">
+            <h2 className="text-xl font-black text-white">
+              Supported Integration Pattern
+            </h2>
+            <div className="mt-5">
+              <BulletList items={beesIntegrationCapabilities} />
+            </div>
+          </article>
+        </div>
+        <div className="mt-6 border border-signal/25 bg-signal/5 p-5 text-sm leading-6 text-slate-300">
+          Vendor status and direct technical integration are separate. Until
+          API credentials and production configuration are activated,
+          assignments can continue through the approved vendor workflow.
+          Enterprise SSO can later use SAML 2.0 for authentication, while user
+          roles remain managed separately in each platform.
         </div>
       </Section>
 

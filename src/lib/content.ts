@@ -399,6 +399,113 @@ export const growthServiceSections = [
   },
 ];
 
+export const underwritingServices = [
+  {
+    title: "Residential Underwriting Documentation",
+    status: "Available now",
+    summary:
+      "Consistent exterior and roof documentation that helps insurance and property teams evaluate current property conditions and preserve a visual record for future reference.",
+    current: [
+      "Policy and assignment intake",
+      "Policyholder or property-contact coordination",
+      "Exterior elevation and roof documentation",
+      "Visible roof, property, and liability-condition imagery",
+      "Organized photo package with mission metadata",
+      "Secure client delivery and documented receipt",
+    ],
+    future: [
+      "Carrier-specific forms and report templates",
+      "Automated hazard-assistance workflows",
+      "Structured report summaries",
+      "Direct carrier or inspection-platform exchange",
+    ],
+  },
+  {
+    title: "Commercial Underwriting Documentation",
+    status: "Scoped projects",
+    summary:
+      "Custom exterior documentation for commercial properties where underwriters, risk teams, owners, and contractors need consistent site and structural context.",
+    current: [
+      "Site, building, and roof overview imagery",
+      "Pre-existing exterior condition documentation",
+      "Access, exposure, and surrounding-risk context",
+      "Multiple-building and complex-site shot planning",
+      "Custom file naming and delivery structure",
+      "Priority and deadline tracking through the portal",
+    ],
+    future: [
+      "Custom carrier questionnaires",
+      "Interior and floor-plan partner workflows",
+      "Automated report generation",
+      "Experienced underwriting-review partnerships",
+    ],
+  },
+  {
+    title: "Managed Inspection Coordination",
+    status: "Expanding capability",
+    summary:
+      "A high-touch coordination workflow for clients who need careful scheduling, clear communication, tailored scope, and controlled delivery for complex or high-value properties.",
+    current: [
+      "Dedicated assignment review",
+      "Multi-channel contact and scheduling attempts",
+      "Named mission coordinator",
+      "Custom shot list and access planning",
+      "Progress notifications and escalation notes",
+      "Admin quality review before client delivery",
+    ],
+    future: [
+      "Specialized inspector network",
+      "Carrier-specific certification programs",
+      "Floor-plan and replacement-cost data partners",
+      "White-labeled enterprise portal experience",
+    ],
+  },
+];
+
+export const integrationWorkflow = [
+  {
+    title: "Assignment Received",
+    description:
+      "Create the mission from a portal request, structured file import, or future API integration.",
+  },
+  {
+    title: "Contact & Schedule",
+    description:
+      "Confirm the property contact, access requirements, deadline, permissions, and appointment window.",
+  },
+  {
+    title: "Mission Planned",
+    description:
+      "Review scope, airspace, weather, site hazards, credential needs, and required deliverables.",
+  },
+  {
+    title: "Field Documentation",
+    description:
+      "Capture the approved exterior, roof, site, and contextual imagery using a repeatable shot plan.",
+  },
+  {
+    title: "Process & Review",
+    description:
+      "Organize files, verify scope completion, prepare watermarked proofs, and complete Admin quality review.",
+  },
+  {
+    title: "Deliver & Acknowledge",
+    description:
+      "Release reports and clean files after approval, record receipt, and update the assignment as client-received.",
+  },
+];
+
+export const beesIntegrationCapabilities = [
+  "Create inspection projects from High Eye mission data",
+  "Retrieve project details and current status",
+  "Search and reconcile open inspection assignments",
+  "Update supported project details and workflow status",
+  "Retrieve available reports, report summaries, and report files",
+  "Retrieve project images when authorized",
+  "Mark returned reports as client-received after successful import",
+  "Use separate staging and production credentials",
+];
+
 export const industrySolutions = [
   {
     title: "Real Estate",
