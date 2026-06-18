@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { LogIn, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { company, navItems } from "@/lib/content";
 
@@ -50,12 +50,20 @@ export function Header() {
           })}
         </nav>
 
-        <Link
-          href="/contact"
-          className="hidden border border-signal/50 bg-signal px-4 py-2 text-sm font-bold text-navy transition hover:bg-white lg:inline-flex"
-        >
-          Request Quote
-        </Link>
+        <div className="hidden items-center gap-2 lg:flex">
+          <Link
+            href="/portal"
+            className="inline-flex items-center gap-2 border border-white/15 px-4 py-2 text-sm font-bold text-white transition hover:border-flight/60 hover:text-flight"
+          >
+            <LogIn size={16} /> Client Portal
+          </Link>
+          <Link
+            href="/contact"
+            className="border border-signal/50 bg-signal px-4 py-2 text-sm font-bold text-navy transition hover:bg-white"
+          >
+            Request Quote
+          </Link>
+        </div>
 
         <button
           type="button"
@@ -81,6 +89,13 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+            <Link
+              href="/portal"
+              className="mt-2 flex items-center gap-2 border border-flight/40 bg-flight/10 px-4 py-3 text-sm font-bold text-white"
+              onClick={() => setOpen(false)}
+            >
+              <LogIn size={17} /> Client Portal
+            </Link>
           </nav>
         </div>
       ) : null}

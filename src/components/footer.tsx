@@ -30,6 +30,12 @@ export function Footer() {
                 {item.label}
               </Link>
             ))}
+            <Link
+              href="/portal"
+              className="text-sm font-semibold text-flight transition hover:text-white"
+            >
+              Client Portal
+            </Link>
           </div>
         </div>
         <div>
@@ -37,8 +43,8 @@ export function Footer() {
             Future Roadmap
           </p>
           <p className="mt-4 text-sm leading-6 text-slate-400">
-            Mapping, photogrammetry, industrial support, client portals, secure
-            downloads, and GCP-backed project delivery.
+            Mapping, photogrammetry, industrial support, secure project
+            delivery, and GCP-backed client workflows.
           </p>
         </div>
       </div>

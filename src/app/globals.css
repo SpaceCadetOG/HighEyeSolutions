@@ -48,3 +48,27 @@ body::before {
     linear-gradient(45deg, rgba(47, 128, 237, 0.1), rgba(215, 169, 75, 0.08));
   border: 1px solid rgba(148, 163, 184, 0.2);
 }
+
+.portal-input {
+  min-height: 3rem;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(7, 17, 31, 0.75);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #f8fafc;
+  outline: none;
+  transition: border-color 150ms ease;
+}
+
+.portal-input:focus {
+  border-color: #2f80ed;
+}
+
+.portal-input::placeholder {
+  color: #475569;
+}
+
+.portal-input option {
+  background: #07111f;
+}

@@ -162,6 +162,8 @@ export const serviceSections = [
       "Social media content",
       "Property marketing",
       "Neighborhood / property flyovers",
+      "Lot, exterior, and full-site context",
+      "Nearby feature and location highlights",
     ],
   },
   {
@@ -174,6 +176,8 @@ export const serviceSections = [
       "Insurance claim imagery support",
       "Contractor before-and-after documentation",
       "Maintenance documentation",
+      "Adjuster and contractor image packages",
+      "Time-stamped visual records",
     ],
   },
   {
