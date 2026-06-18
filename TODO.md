@@ -40,6 +40,11 @@
   deliverable, invoice, payment, payable, and audit data.
 - Add client history and property records.
 - Add invoice and receipt PDF generation for client and admin portals.
+- Generate client-specific watermarked proof images and proxy videos.
+- Keep originals in private Cloud Storage paths and issue short-lived signed
+  URLs only after the configured approval and payment-release event.
+- Log proof views, approvals, revisions, releases, and original downloads.
+- Add deliverable licensing terms and acceptance timestamps to each mission.
 - Add pilot payables, payout statements, and provider transaction references.
 - Add mobile pilot workflow for accept/decline, en route, on site, upload,
   processing, and completion actions.

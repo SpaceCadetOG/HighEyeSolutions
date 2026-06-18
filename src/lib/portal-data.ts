@@ -178,6 +178,86 @@ export const demoInvoices = [
   },
 ];
 
+export type DeliverablePackage = {
+  id: string;
+  missionId: string;
+  missionTitle: string;
+  client: string;
+  status: "Awaiting Approval" | "Released";
+  paymentStatus: "Funded - release pending" | "Paid and released";
+  submitted: string;
+  files: { name: string; format: string; size: string }[];
+  preview: {
+    label: string;
+    detail: string;
+    watermark: string | null;
+    resolution: string;
+  };
+  release: {
+    originalAccess: string;
+    linkExpiration: string;
+    receipt: string;
+  };
+};
+
+export const demoDeliverablePackages: DeliverablePackage[] = [
+  {
+    id: "DEL-1042",
+    missionId: "HES-1042",
+    missionTitle: "Residential Roof Documentation",
+    client: "Gulf Claims Partners",
+    status: "Awaiting Approval",
+    paymentStatus: "Funded - release pending",
+    submitted: "June 20, 2026 at 2:18 PM",
+    files: [
+      { name: "Roof overview proof set", format: "12 JPG proofs", size: "8 MB" },
+      { name: "Adjuster summary proof", format: "PDF proof", size: "1.4 MB" },
+    ],
+    preview: {
+      label: "Client proof view",
+      detail:
+        "The client can review composition, coverage, file count, and scope completion.",
+      watermark: "HIGH EYE PROOF - NOT LICENSED FOR USE",
+      resolution: "Low-resolution preview",
+    },
+    release: {
+      originalAccess: "Locked until approval and payment release",
+      linkExpiration: "No original download link issued",
+      receipt: "Issued after payment confirmation",
+    },
+  },
+  {
+    id: "DEL-1029",
+    missionId: "HES-1029",
+    missionTitle: "Construction Progress Update",
+    client: "Lakeshore BuildCo",
+    status: "Released",
+    paymentStatus: "Paid and released",
+    submitted: "June 14, 2026 at 1:42 PM",
+    files: [
+      {
+        name: "Construction progress photo set",
+        format: "24 JPG files",
+        size: "186 MB",
+      },
+      { name: "Site overview gallery", format: "Secure gallery", size: "Ready" },
+      { name: "Progress summary", format: "PDF", size: "4.2 MB" },
+    ],
+    preview: {
+      label: "Released client view",
+      detail:
+        "The client sees clean originals, approved reports, and download controls.",
+      watermark: null,
+      resolution: "Original resolution",
+    },
+    release: {
+      originalAccess: "Clean originals available",
+      linkExpiration: "Secure link expires June 21, 2026",
+      receipt: "RCT-1029",
+    },
+  },
+];
+
 export const demoClients = [
   {
     id: "CL-201",

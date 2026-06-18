@@ -8,6 +8,7 @@ import {
   CircleDollarSign,
   FileCheck2,
   FileText,
+  Eye,
   LayoutDashboard,
   MapPin,
   Menu,
@@ -23,6 +24,7 @@ import {
 import { useState } from "react";
 import {
   demoClients,
+  demoDeliverablePackages,
   demoInvoices,
   demoMissions,
   type DemoMission,
@@ -31,6 +33,7 @@ import {
 type AdminView =
   | "overview"
   | "missions"
+  | "deliverables"
   | "clients"
   | "billing"
   | "payables"
@@ -39,6 +42,7 @@ type AdminView =
 const adminNavigation = [
   { id: "overview" as const, label: "Operations", icon: LayoutDashboard },
   { id: "missions" as const, label: "Mission Queue", icon: PlaneTakeoff },
+  { id: "deliverables" as const, label: "Deliverable Review", icon: Eye },
   { id: "clients" as const, label: "Client History", icon: Users },
   { id: "billing" as const, label: "Invoices & Receipts", icon: FileText },
   { id: "payables" as const, label: "Pilot Payables", icon: WalletCards },
@@ -164,6 +168,7 @@ export function AdminDashboard() {
               onToggleMission={setExpandedMission}
             />
           ) : null}
+          {view === "deliverables" ? <AdminDeliverables /> : null}
           {view === "clients" ? <ClientHistory /> : null}
           {view === "billing" ? <AdminBilling /> : null}
           {view === "payables" ? <Payables /> : null}
@@ -342,6 +347,126 @@ function AdminMissionDetails({ mission }: { mission: DemoMission }) {
           View Audit Trail
         </button>
       </div>
+    </div>
+  );
+}
+
+function AdminDeliverables() {
+  return (
+    <div className="mt-8 grid gap-6">
+      {demoDeliverablePackages.map((delivery) => {
+        const released = delivery.status === "Released";
+        return (
+          <section
+            key={delivery.id}
+            className="border border-white/10 bg-white/[0.025]"
+          >
+            <div className="flex flex-col gap-4 border-b border-white/10 p-5 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h2 className="text-lg font-black">{delivery.missionTitle}</h2>
+                  <AdminStatus status={delivery.status} />
+                </div>
+                <p className="mt-1 text-xs text-slate-500">
+                  {delivery.id} · {delivery.missionId} · {delivery.client}
+                </p>
+              </div>
+              <div className="lg:text-right">
+                <p className="text-xs text-slate-500">Payment state</p>
+                <p className="mt-1 text-sm font-bold text-slate-200">
+                  {delivery.paymentStatus}
+                </p>
+              </div>
+            </div>
+            <div className="grid gap-6 p-5 lg:grid-cols-[0.8fr_1.2fr]">
+              <div className="relative aspect-[16/9] overflow-hidden border border-white/15 bg-[linear-gradient(145deg,#15243a,#304761_50%,#8794a3)]">
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:36px_36px]" />
+                <div className="absolute inset-x-[12%] top-[25%] h-[48%] border border-white/25 bg-navy/35 [clip-path:polygon(50%_0,100%_35%,82%_100%,18%_100%,0_35%)]" />
+                {delivery.preview.watermark ? (
+                  <div className="absolute inset-0 flex -rotate-12 items-center justify-center">
+                    <p className="border-y-4 border-white/50 bg-navy/55 px-5 py-3 text-center text-base font-black uppercase tracking-[0.12em] text-white/70">
+                      {delivery.preview.watermark}
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-flight">
+                  Admin Perspective
+                </p>
+                <h3 className="mt-3 text-xl font-black">
+                  {released
+                    ? "Release complete and logged"
+                    : "Review proof before client release"}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">
+                  {released
+                    ? "The client has clean-file access, the receipt is attached, and the audit trail records who released the package and when."
+                    : "Admin verifies file count, watermarking, scope completion, payment funding, and client permissions before proofs become available."}
+                </p>
+                <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                  <AdminCheck
+                    label="Scope"
+                    value={released ? "Approved" : "Ready for review"}
+                  />
+                  <AdminCheck
+                    label="Payment"
+                    value={delivery.paymentStatus}
+                  />
+                  <AdminCheck
+                    label="Originals"
+                    value={delivery.release.originalAccess}
+                  />
+                </div>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {!released ? (
+                    <>
+                      <button
+                        type="button"
+                        className="bg-flight px-4 py-2 text-sm font-bold"
+                      >
+                        Approve Proof Set
+                      </button>
+                      <button
+                        type="button"
+                        className="border border-white/15 px-4 py-2 text-sm font-bold"
+                      >
+                        Return to Pilot
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        className="border border-white/15 px-4 py-2 text-sm font-bold"
+                      >
+                        View Release Log
+                      </button>
+                      <button
+                        type="button"
+                        className="border border-white/15 px-4 py-2 text-sm font-bold"
+                      >
+                        View Receipt
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  );
+}
+
+function AdminCheck({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="border border-white/10 bg-navy/50 p-4">
+      <p className="text-[10px] font-black uppercase tracking-[0.12em] text-slate-600">
+        {label}
+      </p>
+      <p className="mt-2 text-xs font-bold leading-5 text-slate-300">{value}</p>
     </div>
   );
 }

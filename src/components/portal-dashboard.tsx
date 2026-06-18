@@ -11,6 +11,8 @@ import {
   FileImage,
   FolderKanban,
   FileText,
+  Eye,
+  LockKeyhole,
   LayoutDashboard,
   MapPin,
   Menu,
@@ -19,11 +21,13 @@ import {
   Plus,
   ReceiptText,
   ShieldCheck,
+  UnlockKeyhole,
   Upload,
   X,
 } from "lucide-react";
 import { useState } from "react";
 import {
+  demoDeliverablePackages,
   demoInvoices,
   demoMissions,
   type DemoMission,
@@ -44,27 +48,6 @@ const navigation = [
   { id: "billing" as const, label: "Invoices & Receipts", icon: ReceiptText },
   { id: "payments" as const, label: "Payments", icon: Banknote },
   { id: "messages" as const, label: "Messages", icon: MessageSquareText },
-];
-
-const deliverables = [
-  {
-    name: "Construction Progress - Photo Set",
-    mission: "HES-1029",
-    format: "24 JPG files",
-    size: "186 MB",
-  },
-  {
-    name: "Site Overview - Web Gallery",
-    mission: "HES-1029",
-    format: "Secure gallery",
-    size: "Ready",
-  },
-  {
-    name: "Progress Summary",
-    mission: "HES-1029",
-    format: "PDF",
-    size: "4.2 MB",
-  },
 ];
 
 export function PortalDashboard() {
@@ -601,40 +584,177 @@ function BulletItems({ items }: { items: string[] }) {
 
 function DeliverableList() {
   return (
-    <section className="mt-8 border border-white/10 bg-white/[0.025]">
-      <div className="border-b border-white/10 p-5">
-        <h2 className="text-lg font-black">Available deliverables</h2>
-        <p className="mt-1 text-sm text-slate-500">
-          Demo files from a completed construction mission.
-        </p>
-      </div>
-      <div className="divide-y divide-white/10">
-        {deliverables.map((file) => (
-          <article
-            key={file.name}
-            className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between"
+    <div className="mt-8 grid gap-6">
+      <section className="border border-white/10 bg-white/[0.025] p-5">
+        <div className="flex items-start gap-4">
+          <ShieldCheck className="mt-0.5 flex-none text-flight" size={22} />
+          <div>
+            <h2 className="text-lg font-black">Protected delivery workflow</h2>
+            <p className="mt-2 max-w-4xl text-sm leading-6 text-slate-400">
+              Proofs are watermarked and reduced in resolution. Clean originals
+              remain private until the client approves the scope and the
+              payment provider confirms the release milestone.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {[
+                "Repeated client-specific watermark",
+                "Low-resolution proof assets",
+                "No original-file URL before release",
+                "Expiring signed download links",
+                "Download and release audit log",
+                "Usage rights begin after payment",
+              ].map((control) => (
+                <span
+                  key={control}
+                  className="border border-white/10 bg-navy/50 px-3 py-2 text-xs font-bold text-slate-300"
+                >
+                  {control}
+                </span>
+              ))}
+            </div>
+            <p className="mt-4 text-xs leading-5 text-slate-600">
+              No web preview can completely prevent screenshots. Watermarks,
+              reduced resolution, access logs, expiring links, and contract
+              terms make unauthorized use identifiable and keep production
+              originals unavailable until release.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {demoDeliverablePackages.map((delivery) => {
+        const released = delivery.status === "Released";
+        return (
+          <section
+            key={delivery.id}
+            className="border border-white/10 bg-white/[0.025]"
           >
-            <div className="flex gap-4">
-              <span className="flex h-11 w-11 flex-none items-center justify-center border border-flight/30 bg-flight/10 text-flight">
-                <FolderKanban size={20} />
-              </span>
+            <div className="flex flex-col gap-4 border-b border-white/10 p-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="font-bold">{file.name}</p>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h2 className="text-lg font-black">{delivery.missionTitle}</h2>
+                  <span
+                    className={`border px-2 py-1 text-[10px] font-black uppercase ${
+                      released
+                        ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-300"
+                        : "border-signal/30 bg-signal/10 text-signal"
+                    }`}
+                  >
+                    {delivery.status}
+                  </span>
+                </div>
                 <p className="mt-1 text-xs text-slate-500">
-                  {file.mission} · {file.format} · {file.size}
+                  {delivery.missionId} · {delivery.submitted}
                 </p>
               </div>
+              <p className="text-sm font-bold text-slate-300">
+                {delivery.paymentStatus}
+              </p>
             </div>
-            <button
-              type="button"
-              className="inline-flex min-h-10 items-center justify-center gap-2 border border-white/15 px-4 text-sm font-bold text-slate-200"
-            >
-              <CloudDownload size={17} /> Preview Download
-            </button>
-          </article>
-        ))}
-      </div>
-    </section>
+
+            <div className="grid gap-6 p-5 xl:grid-cols-[1fr_0.9fr]">
+              <div>
+                <div
+                  className={`relative aspect-[16/9] overflow-hidden border ${
+                    released
+                      ? "border-emerald-400/25"
+                      : "border-signal/25"
+                  } bg-[linear-gradient(145deg,#15243a,#253b56_45%,#7d8ea1)]`}
+                >
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:42px_42px]" />
+                  <div className="absolute inset-x-[12%] top-[25%] h-[48%] border border-white/25 bg-navy/35 [clip-path:polygon(50%_0,100%_35%,82%_100%,18%_100%,0_35%)]" />
+                  <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-navy/85 px-3 py-2 text-xs font-bold">
+                    {released ? (
+                      <UnlockKeyhole className="text-emerald-300" size={15} />
+                    ) : (
+                      <LockKeyhole className="text-signal" size={15} />
+                    )}
+                    {delivery.preview.resolution}
+                  </div>
+                  {delivery.preview.watermark ? (
+                    <div className="absolute inset-0 flex -rotate-12 items-center justify-center overflow-hidden">
+                      <p className="max-w-[90%] border-y-4 border-white/50 bg-navy/55 px-6 py-4 text-center text-lg font-black uppercase tracking-[0.15em] text-white/70 sm:text-2xl">
+                        {delivery.preview.watermark}
+                      </p>
+                    </div>
+                  ) : null}
+                </div>
+                <div className="mt-4 flex items-start gap-3">
+                  <Eye className="mt-0.5 flex-none text-flight" size={18} />
+                  <div>
+                    <p className="text-sm font-bold">{delivery.preview.label}</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-500">
+                      {delivery.preview.detail}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-flight">
+                  Package Contents
+                </p>
+                <div className="mt-4 divide-y divide-white/10 border-y border-white/10">
+                  {delivery.files.map((file) => (
+                    <div
+                      key={file.name}
+                      className="flex items-center gap-3 py-4"
+                    >
+                      <span className="flex h-10 w-10 flex-none items-center justify-center border border-flight/30 bg-flight/10 text-flight">
+                        <FolderKanban size={18} />
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-bold">{file.name}</p>
+                        <p className="mt-1 text-xs text-slate-500">
+                          {file.format} · {file.size}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 grid gap-3 text-sm">
+                  <DetailLine
+                    label="Original access"
+                    value={delivery.release.originalAccess}
+                  />
+                  <DetailLine
+                    label="Secure link"
+                    value={delivery.release.linkExpiration}
+                  />
+                  <DetailLine
+                    label="Receipt"
+                    value={delivery.release.receipt}
+                  />
+                </div>
+                {released ? (
+                  <button
+                    type="button"
+                    className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 bg-flight px-4 text-sm font-black"
+                  >
+                    <CloudDownload size={17} /> Download Released Package
+                  </button>
+                ) : (
+                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                    <button
+                      type="button"
+                      className="min-h-11 border border-white/15 px-4 text-sm font-bold text-slate-200"
+                    >
+                      Request Revision
+                    </button>
+                    <button
+                      type="button"
+                      className="min-h-11 bg-signal px-4 text-sm font-black text-navy"
+                    >
+                      Approve & Release
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        );
+      })}
+    </div>
   );
 }
 
@@ -749,9 +869,33 @@ function PaymentView() {
           <li><strong className="text-white">3. Deliver:</strong> High Eye completes the approved mission and uploads files.</li>
           <li><strong className="text-white">4. Release:</strong> Funds release after the agreed delivery milestone.</li>
         </ol>
+        <div className="mt-6 grid gap-3">
+          {[
+            ["Fund", "Payment provider confirms the protected milestone."],
+            ["Proof", "Client receives watermarked, low-resolution previews."],
+            ["Approve", "Client accepts the scope or requests a revision."],
+            ["Unlock", "Clean originals, receipt, and expiring links are released."],
+          ].map(([title, detail], index) => (
+            <div
+              key={title}
+              className="flex gap-3 border border-white/10 bg-navy/40 p-4"
+            >
+              <span className="flex h-7 w-7 flex-none items-center justify-center border border-flight/30 text-xs font-black text-flight">
+                {index + 1}
+              </span>
+              <div>
+                <p className="text-sm font-bold text-white">{title}</p>
+                <p className="mt-1 text-xs leading-5 text-slate-500">
+                  {detail}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
         <p className="mt-6 border-t border-white/10 pt-5 text-xs leading-5 text-slate-500">
           Demo only. High Eye Solutions does not currently receive, custody, or
-          hold escrow funds through this portal.
+          hold escrow funds through this portal. Production payments will use a
+          qualified payment provider and documented release rules.
         </p>
       </aside>
     </div>
